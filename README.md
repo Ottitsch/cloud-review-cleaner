@@ -42,7 +42,7 @@ S3 Upload → Preprocess → Profanity Check → Sentiment Analysis → User Man
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Ottitsch/cloud-review-cleaner
    cd cloud-review-cleaner
    ```
 
