@@ -1,0 +1,61 @@
+{
+  "results": {
+    "dataset": "reviews_devset.json",
+    "processed_count": 78829,
+    "sentiment_analysis": {
+      "total_reviews": 78829,
+      "positive_reviews": 61927,
+      "neutral_reviews": 10874,
+      "negative_reviews": 6028
+    },
+    "profanity_check": {
+      "failed_reviews": 9046
+    },
+    "user_management": {
+      "total_users": 8737,
+      "banned_users_count": 40,
+      "banned_users": [
+        "A13QTZ8CIMHHG4",
+        "A14OJS0VWMOSWO",
+        "A16QODENBJVUI1",
+        "A17BTP1QHK2I3I",
+        "A1CNQTCRQ35IMM",
+        "A1D2C0WDCSHUWZ",
+        "A1I2O9Y3X3HXLS",
+        "A1I6U5AQAT3ZG9",
+        "A1K1JW1C5CUSUZ",
+        "A1T17LMQABMBN5",
+        "A1ZN2JLLR9GI3T",
+        "A28V8F738Y1AYV",
+        "A2AIMXT9PLAM12",
+        "A2CW9IQAPFEYLM",
+        "A2E9HDZXQORZLA",
+        "A2EDZH51XHFA9B",
+        "A2F6N60Z96CAJI",
+        "A2F6SZLKG0TOJ7",
+        "A2FRKEXDXDN1KI",
+        "A2HVL790PBWYTU",
+        "A2I6MHMAZZDCRX",
+        "A2NJO6YE954DBH",
+        "A2UNMDJYXPEQZ3",
+        "A2Z4KA3EFQWZOX",
+        "A320TMDV6KCFU",
+        "A328S9RN3U5M68",
+        "A3B48AN8JID1JK",
+        "A3E8BQOX3OOUH2",
+        "A3LXRIY0HE71K",
+        "A3MV1KKHX51FYT",
+        "A3NH7PYU4AD5GA",
+        "A3QS1EPDZTLPWS",
+        "A3UDYY6L2NH3JS",
+        "A3UPYGJKZ0XTU4",
+        "AC1K4OQOZ90RS",
+        "AFVQZQ8PW0L",
+        "AM09IO8QXEB1B",
+        "AQIJ3ZEEVCIKU",
+        "AV6QDP8Q0ONK4",
+        "AW3VZ5O895LRK"
+      ]
+    }
+  }
+}

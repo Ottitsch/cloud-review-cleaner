@@ -1,0 +1,109 @@
+{
+  "ssm_parameters": {
+    "/cloud-review-cleaner/buckets/raw-reviews": {
+      "value": "cloud-review-cleaner-raw-reviews",
+      "type": "String",
+      "description": "S3 bucket for raw review uploads"
+    },
+    "/cloud-review-cleaner/buckets/processed-reviews": {
+      "value": "cloud-review-cleaner-processed-reviews",
+      "type": "String",
+      "description": "S3 bucket for processed reviews"
+    },
+    "/cloud-review-cleaner/buckets/failed-reviews": {
+      "value": "cloud-review-cleaner-failed-reviews",
+      "type": "String",
+      "description": "S3 bucket for failed review processing"
+    },
+    "/cloud-review-cleaner/tables/reviews": {
+      "value": "cloud-review-cleaner-reviews",
+      "type": "String",
+      "description": "DynamoDB table for processed reviews"
+    },
+    "/cloud-review-cleaner/tables/users": {
+      "value": "cloud-review-cleaner-users",
+      "type": "String",
+      "description": "DynamoDB table for user statistics"
+    },
+    "/cloud-review-cleaner/tables/profanity-stats": {
+      "value": "cloud-review-cleaner-profanity-stats",
+      "type": "String",
+      "description": "DynamoDB table for profanity statistics"
+    },
+    "/cloud-review-cleaner/lambdas/preprocess": {
+      "value": "cloud-review-cleaner-preprocess",
+      "type": "String",
+      "description": "Lambda function for review preprocessing"
+    },
+    "/cloud-review-cleaner/lambdas/profanity-check": {
+      "value": "cloud-review-cleaner-profanity-check",
+      "type": "String",
+      "description": "Lambda function for profanity checking"
+    },
+    "/cloud-review-cleaner/lambdas/sentiment-analysis": {
+      "value": "cloud-review-cleaner-sentiment-analysis",
+      "type": "String",
+      "description": "Lambda function for sentiment analysis"
+    },
+    "/cloud-review-cleaner/lambdas/user-management": {
+      "value": "cloud-review-cleaner-user-management",
+      "type": "String",
+      "description": "Lambda function for user management"
+    },
+    "/cloud-review-cleaner/config/max-unpolite-reviews": {
+      "value": "3",
+      "type": "String",
+      "description": "Maximum number of unpolite reviews before user ban"
+    },
+    "/cloud-review-cleaner/config/profanity-threshold": {
+      "value": "0.7",
+      "type": "String",
+      "description": "Threshold for profanity detection confidence"
+    },
+    "/cloud-review-cleaner/config/sentiment-positive-threshold": {
+      "value": "0.1",
+      "type": "String",
+      "description": "Threshold for positive sentiment classification"
+    },
+    "/cloud-review-cleaner/config/sentiment-negative-threshold": {
+      "value": "-0.1",
+      "type": "String",
+      "description": "Threshold for negative sentiment classification"
+    },
+    "/cloud-review-cleaner/resources/bad-words-s3-key": {
+      "value": "resources/bad_words.txt",
+      "type": "String",
+      "description": "S3 key for bad words list file"
+    },
+    "/cloud-review-cleaner/resources/stopwords-s3-key": {
+      "value": "resources/stopwords.txt",
+      "type": "String",
+      "description": "S3 key for stop words list file"
+    }
+  },
+  "parameter_hierarchy": {
+    "application": "cloud-review-cleaner",
+    "environments": ["dev", "test", "prod"],
+    "categories": {
+      "buckets": "S3 bucket names",
+      "tables": "DynamoDB table names", 
+      "lambdas": "Lambda function names",
+      "config": "Application configuration values",
+      "resources": "Resource file locations"
+    }
+  },
+  "deployment_parameters": {
+    "dev": {
+      "prefix": "/cloud-review-cleaner-dev",
+      "suffix": "-dev"
+    },
+    "test": {
+      "prefix": "/cloud-review-cleaner-test", 
+      "suffix": "-test"
+    },
+    "prod": {
+      "prefix": "/cloud-review-cleaner-prod",
+      "suffix": "-prod"
+    }
+  }
+} 

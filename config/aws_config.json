@@ -1,0 +1,113 @@
+{
+  "aws_region": "us-east-1",
+  "localstack_endpoint": "http://localhost:4566",
+  "s3_buckets": {
+    "raw_reviews": "cloud-review-cleaner-raw-reviews",
+    "processed_reviews": "cloud-review-cleaner-processed-reviews",
+    "failed_reviews": "cloud-review-cleaner-failed-reviews"
+  },
+  "dynamodb_tables": {
+    "reviews": {
+      "table_name": "cloud-review-cleaner-reviews",
+      "partition_key": "review_id",
+      "sort_key": "timestamp",
+      "billing_mode": "PAY_PER_REQUEST",
+      "stream_enabled": true
+    },
+    "users": {
+      "table_name": "cloud-review-cleaner-users",
+      "partition_key": "user_id",
+      "billing_mode": "PAY_PER_REQUEST",
+      "stream_enabled": true
+    },
+    "profanity_stats": {
+      "table_name": "cloud-review-cleaner-profanity-stats",
+      "partition_key": "date",
+      "billing_mode": "PAY_PER_REQUEST"
+    }
+  },
+  "lambda_functions": {
+    "preprocess": {
+      "function_name": "cloud-review-cleaner-preprocess",
+      "runtime": "python3.9",
+      "timeout": 300,
+      "memory_size": 512,
+      "environment_variables": {
+        "LOG_LEVEL": "INFO",
+        "LOCALSTACK_ENDPOINT": "http://localhost:4566"
+      }
+    },
+    "profanity_check": {
+      "function_name": "cloud-review-cleaner-profanity-check",
+      "runtime": "python3.9",
+      "timeout": 60,
+      "memory_size": 256,
+      "environment_variables": {
+        "LOG_LEVEL": "INFO",
+        "LOCALSTACK_ENDPOINT": "http://localhost:4566"
+      }
+    },
+    "sentiment_analysis": {
+      "function_name": "cloud-review-cleaner-sentiment-analysis",
+      "runtime": "python3.9",
+      "timeout": 180,
+      "memory_size": 512,
+      "environment_variables": {
+        "LOG_LEVEL": "INFO",
+        "LOCALSTACK_ENDPOINT": "http://localhost:4566"
+      }
+    },
+    "user_management": {
+      "function_name": "cloud-review-cleaner-user-management",
+      "runtime": "python3.9",
+      "timeout": 60,
+      "memory_size": 256,
+      "environment_variables": {
+        "LOG_LEVEL": "INFO",
+        "LOCALSTACK_ENDPOINT": "http://localhost:4566"
+      }
+    }
+  },
+  "iam_roles": {
+    "lambda_execution_role": {
+      "role_name": "cloud-review-cleaner-lambda-role",
+      "policies": [
+        "AWSLambdaBasicExecutionRole",
+        "AmazonS3FullAccess",
+        "AmazonDynamoDBFullAccess",
+        "AmazonSSMReadOnlyAccess"
+      ]
+    }
+  },
+  "event_triggers": {
+    "s3_triggers": [
+      {
+        "bucket": "cloud-review-cleaner-raw-reviews",
+        "events": ["s3:ObjectCreated:*"],
+        "function": "cloud-review-cleaner-preprocess",
+        "filter_prefix": "",
+        "filter_suffix": ".json"
+      }
+    ],
+    "dynamodb_triggers": [
+      {
+        "table": "cloud-review-cleaner-reviews",
+        "function": "cloud-review-cleaner-user-management",
+        "event_source_mapping": {
+          "event_source_arn": "stream_arn_placeholder",
+          "starting_position": "LATEST",
+          "batch_size": 10
+        }
+      }
+    ]
+  },
+  "cloudwatch_logs": {
+    "retention_days": 14,
+    "log_groups": [
+      "/aws/lambda/cloud-review-cleaner-preprocess",
+      "/aws/lambda/cloud-review-cleaner-profanity-check",
+      "/aws/lambda/cloud-review-cleaner-sentiment-analysis",
+      "/aws/lambda/cloud-review-cleaner-user-management"
+    ]
+  }
+} 
