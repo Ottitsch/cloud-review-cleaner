@@ -1,0 +1,56 @@
+# Python virtual environments
+.venv/
+.env/
+.pytest_cache/
+
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# LocalStack state
+.localstack/
+
+# AWS credentials and config (never commit secrets!)
+.aws/
+*.pem
+
+# Deployment packages
+*.zip
+
+# IDE/editor configs
+.vscode/
+.idea/
+.cursor/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and test output
+*.log
+*.pytest_cache/
+coverage/
+htmlcov/
+
+# Jupyter and IPython
+.ipynb_checkpoints/
+
+# Build artifacts
+dist/
+build/
+.eggs/
+*.egg-info/
+
+# Temporary files
+*.tmp
+*.swp
+*.bak
+
+# Local config overrides
+config/local_*.json
+
+# Data outputs
+data/output/
